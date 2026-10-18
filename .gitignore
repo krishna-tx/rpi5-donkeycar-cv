@@ -28,3 +28,6 @@ htmlcov/
 # PyTorch
 lightning_logs
 tb_logs
+
+perceptron/data
+perceptron/tmp

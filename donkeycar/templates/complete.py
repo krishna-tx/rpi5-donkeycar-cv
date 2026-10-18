@@ -648,7 +648,7 @@ class DriveMode:
                  scaled by ai_throttle_mult in autopilot mode
         """
         if mode == 'user':
-            return user_steering, user_throttle
+            return user_steering, user_throttle / 5
         elif mode == 'local_angle':
             return pilot_steering if pilot_steering else 0.0, user_throttle
         return (pilot_steering if pilot_steering else 0.0,
