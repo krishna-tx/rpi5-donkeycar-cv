@@ -29,6 +29,7 @@ from donkeycar.parts.logger import LoggerPart
 from donkeycar.parts.transform import Lambda
 from donkeycar.parts.explode import ExplodeDict
 from donkeycar.parts.controller import JoystickController
+from segmentation import SegmentationOverlay
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -58,13 +59,18 @@ def drive(cfg, use_joystick=False, camera_type='single', meta=[]):
     #
     add_camera(V, cfg, camera_type)
 
+    input_image = 'ui/image_array'
+    # V.add(SegmentationOverlay("./models/sidewalk-segmentation-model.pt"), inputs=['cam/image_array'],
+    #         outputs=['segmentation/overlay'])
+    # input_image = 'segmentation/overlay'
+
     #
     # add the user input controller(s)
     # - this will add the web controller
     # - it will optionally add any configured 'joystick' controller
     #
     has_input_controller = hasattr(cfg, "CONTROLLER_TYPE") and cfg.CONTROLLER_TYPE != "mock"
-    ctr = add_user_controller(V, cfg, use_joystick, input_image = 'ui/image_array')
+    ctr = add_user_controller(V, cfg, use_joystick, input_image = input_image)
 
     #
     # explode the web buttons into their own key/values in memory
@@ -200,7 +206,7 @@ def drive(cfg, use_joystick=False, camera_type='single', meta=[]):
         cfg.AUTO_CREATE_NEW_TUB else cfg.DATA_PATH
     meta += getattr(cfg, 'METADATA', [])
     tub_writer = TubWriter(tub_path, inputs=inputs, types=types, metadata=meta)
-    V.add(tub_writer, inputs=inputs, outputs=["tub/num_records"], run_condition='recording')
+    # V.add(tub_writer, inputs=inputs, outputs=["tub/num_records"], run_condition='recording')
 
     if cfg.DONKEY_GYM:
         print("You can now go to http://localhost:%d to drive your car." % cfg.WEB_CONTROL_PORT)

@@ -23,7 +23,7 @@
 # #
 # # VEHICLE loop
 # #
-# DRIVE_LOOP_HZ = 20      # the vehicle loop will pause if faster than this speed.
+DRIVE_LOOP_HZ = 20      # the vehicle loop will pause if faster than this speed.
 # MAX_LOOPS = None        # the vehicle loop can abort after this many iterations, when given a positive integer.
 # 
 # 
@@ -31,8 +31,8 @@
 # # CAMERA configuration
 # #
 # CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM|CSIC|V4L|D435|MOCK|IMAGE_LIST)
-IMAGE_W = 640
-IMAGE_H = 360
+IMAGE_W = 256
+IMAGE_H = 144
 # IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
 # CAMERA_FRAMERATE = DRIVE_LOOP_HZ
 # CAMERA_VFLIP = False
@@ -93,7 +93,7 @@ IMAGE_H = 360
 # # (deprecated) "PIGPIO_PWM" uses Raspberrys internal PWM
 # # (deprecated) "I2C_SERVO" uses PCA9685 servo controller to control a steering servo and an ESC, as in a standard RC car
 # #
-# DRIVE_TRAIN_TYPE = "PWM_STEERING_THROTTLE"
+DRIVE_TRAIN_TYPE = "MM1"
 # 
 # #
 # # PWM_STEERING_THROTTLE drivetrain configuration
@@ -366,7 +366,7 @@ IMAGE_H = 360
 # JOYSTICK_MAX_THROTTLE = 0.5         #this scalar is multiplied with the -1 to 1 throttle value to limit the maximum throttle. This can help if you drop the controller or just don't need the full speed available.
 # JOYSTICK_STEERING_SCALE = 1.0       #some people want a steering that is less sensitve. This scalar is multiplied with the steering -1 to 1. It can be negative to reverse dir.
 # AUTO_RECORD_ON_THROTTLE = False     #if true, we will record whenever throttle is not zero. if false, you must manually toggle recording with some other trigger. Usually circle button on joystick.
-# CONTROLLER_TYPE = 'xbox'            #(ps3|ps4|xbox|pigpio_rc|nimbus|wiiu|F710|rc3|MM1|custom) custom will run the my_joystick.py controller written by the `donkey createjs` command
+CONTROLLER_TYPE = 'MM1'            #(ps3|ps4|xbox|pigpio_rc|nimbus|wiiu|F710|rc3|MM1|custom) custom will run the my_joystick.py controller written by the `donkey createjs` command
 # USE_NETWORKED_JS = False            #should we listen for remote joystick control over the network?
 # NETWORK_JS_SERVER_IP = None         #when listening for network joystick control, which ip is serving this information
 # JOYSTICK_DEADZONE = 0.01            # when non zero, this is the smallest throttle before recording triggered.
@@ -392,19 +392,19 @@ IMAGE_H = 360
 # 
 # 
 # # ROBOHAT MM1 controller
-# MM1_STEERING_MID = 1500         # Adjust this value if your car cannot run in a straight line
-# MM1_MAX_FORWARD = 2000          # Max throttle to go fowrward. The bigger the faster
-# MM1_STOPPED_PWM = 1500
-# MM1_MAX_REVERSE = 1000          # Max throttle to go reverse. The smaller the faster
-# MM1_SHOW_STEERING_VALUE = False
-# # Serial port
-# # -- Default Pi: '/dev/ttyS0'
-# # -- Jetson Nano: '/dev/ttyTHS1'
-# # -- Google coral: '/dev/ttymxc0'
-# # -- Windows: 'COM3', Arduino: '/dev/ttyACM0'
-# # -- MacOS/Linux:please use 'ls /dev/tty.*' to find the correct serial port for mm1
-# #  eg.'/dev/tty.usbmodemXXXXXX' and replace the port accordingly
-# MM1_SERIAL_PORT = '/dev/ttyS0'  # Serial Port for reading and sending MM1 data.
+MM1_STEERING_MID = 1500         # Adjust this value if your car cannot run in a straight line
+MM1_MAX_FORWARD = 2000          # Max throttle to go fowrward. The bigger the faster
+MM1_STOPPED_PWM = 1500
+MM1_MAX_REVERSE = 1000          # Max throttle to go reverse. The smaller the faster
+MM1_SHOW_STEERING_VALUE = False
+# Serial port
+# -- Default Pi: '/dev/ttyS0'
+# -- Jetson Nano: '/dev/ttyTHS1'
+# -- Google coral: '/dev/ttymxc0'
+# -- Windows: 'COM3', Arduino: '/dev/ttyACM0'
+# -- MacOS/Linux:please use 'ls /dev/tty.*' to find the correct serial port for mm1
+#  eg.'/dev/tty.usbmodemXXXXXX' and replace the port accordingly
+MM1_SERIAL_PORT = '/dev/ttyAMA0'  # Serial Port for reading and sending MM1 data.
 # 
 # 
 # #
@@ -553,8 +553,8 @@ IMAGE_H = 360
 # # computer vision template
 # #
 # # configure which part is used as the autopilot - change to use your own autopilot
-# CV_CONTROLLER_MODULE = "donkeycar.parts.line_follower"
-# CV_CONTROLLER_CLASS = "LineFollower"
+CV_CONTROLLER_MODULE = "segmentation"
+CV_CONTROLLER_CLASS = "SegmentationOverlay"
 # CV_CONTROLLER_INPUTS = ['cam/image_array']
 # CV_CONTROLLER_OUTPUTS = ['pilot/steering', 'pilot/throttle', 'cv/image_array']
 # CV_CONTROLLER_CONDITION = "run_pilot"
