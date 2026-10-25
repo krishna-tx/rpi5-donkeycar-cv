@@ -225,10 +225,10 @@ class RoboHATDriver:
 
     def trim_out_of_bound_value(self, value):
         if value > 1:
-            # print("MM1: Warning, value out of bound. Value = {}".format(value))
+            print("MM1: Warning, value out of bound. Value = {}".format(value))
             return 1.0
         elif value < -1:
-            # print("MM1: Warning, value out of bound. Value = {}".format(value))
+            print("MM1: Warning, value out of bound. Value = {}".format(value))
             return -1.0
         else:
             return value

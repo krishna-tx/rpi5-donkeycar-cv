@@ -102,9 +102,10 @@ class LineFollower:
                     self.throttle = self.throttle_max
         else:
             pass
-            # logger.info(f"No line detected: confidence {confidence} < {self.confidence_threshold}")
+            logger.info(f"No line detected: confidence {confidence} < {self.confidence_threshold}")
 
-        self.throttle /= 5
+        # self.throttle /= 5
+        self.throttle = 0.25
 
         # show some diagnostics
         if self.overlay_image:

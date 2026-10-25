@@ -113,7 +113,7 @@ def drive(cfg, use_joystick=False, camera_type='single', meta=[]):
                       cfg.CV_CONTROLLER_OUTPUTS,
                       cfg.CV_CONTROLLER_CONDITION)
 
-    add_cone_detector(V, cfg)
+    # add_cone_detector(V, cfg)
 
     recording_control = ToggleRecording(cfg.AUTO_RECORD_ON_THROTTLE, cfg.RECORD_DURING_AI)
     V.add(recording_control, inputs=['user/mode', "recording"], outputs=["recording"])

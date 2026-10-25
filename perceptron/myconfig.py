@@ -574,7 +574,7 @@ MM1_SERIAL_PORT = '/dev/ttyAMA0'  # Serial Port for reading and sending MM1 data
 # 
 # # LineFollower - line color and detection area
 SCAN_Y = IMAGE_H // 2          # num pixels from the top to start horiz scan
-# SCAN_HEIGHT = 20      # num pixels high to grab from horiz scan
+SCAN_HEIGHT = 200      # num pixels high to grab from horiz scan
 COLOR_THRESHOLD_LOW  = (20, 100, 100)
 COLOR_THRESHOLD_HIGH = (40, 255, 255)
 # 
